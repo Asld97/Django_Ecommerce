@@ -3,6 +3,6 @@
 !.vscode/tasks.json 
 !.vscode/launch.json 
 !.vscode/extensions.json 
-.venv
+venv
 db.sqlite3
 __pycache__
