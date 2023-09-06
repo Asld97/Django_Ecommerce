@@ -1,0 +1,13 @@
+version: '3.9'
+services:
+  web:
+    build: .
+    volumes: 
+      - .:/django_ecommerce
+    ports: 
+      - 8000:8000
+    image: ecommerce:setup
+    container_name: django_ecommerce
+    command: python manage.py runserver 0.0.0.0:8000  
+
+
