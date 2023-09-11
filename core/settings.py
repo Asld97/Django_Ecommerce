@@ -10,9 +10,9 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
-from pathlib import Path
-from store import apps
 import os
+from pathlib import Path
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -123,7 +123,6 @@ STATIC_URL = 'static/'
 # Media Config
 MEDIA_URL = '/media/' # makes media accessible over HTTP
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/') # Path to the filesystem to the directory containing static meedia
-
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
