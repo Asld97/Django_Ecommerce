@@ -49,7 +49,7 @@ class TestViewResponse(TestCase):
         self.assertEqual(response.status_code, 200)
 
     def test_view_function(self):
-        request = self.factory.get('/item/django-beginners')
+        request = self.factory.get('/django-beginners')
         response = product_all(request)
         html = response.content.decode('utf8')
 

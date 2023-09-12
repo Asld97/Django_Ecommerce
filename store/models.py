@@ -7,20 +7,23 @@ from django.urls import reverse
 class ProductManager(models.Manager):
     def get_queryset(self):
         return super(ProductManager, self).get_queryset().filter(is_active=True)
-    
+
+
 class Category(models.Model):
-    name = models.CharField(max_length=255, db_index=True, unique=True) # db_index -> makes a pointer to data, best use with unique argument
-    slug = models.SlugField(max_length=255, unique=True) # Slug allows to save data from search bar
+    name = models.CharField(max_length=255, db_index=True, unique=True)  # db_index -> makes a pointer to data, best 
+    # use with unique argument
+    slug = models.SlugField(max_length=255, unique=True)  # Slug allows to save data from search bar
 
     class Meta:
         verbose_name_plural = 'categories'
 
     def get_absolute_url(self):
-        return reverse('store:category_list', args = [self.slug])
+        return reverse('store:category_list', args=[self.slug])
     
     def __str__(self):
         return self.name
-    
+
+
 class Product(models.Model):
     category = models.ForeignKey(Category, related_name="product", on_delete=models.CASCADE)
     created_by = models.ForeignKey(User, related_name="product_creator", on_delete=models.CASCADE)
@@ -42,7 +45,7 @@ class Product(models.Model):
         ordering = ('-created',)
     
     def get_absolute_url(self):
-        return reverse('store:product_detail', args = [self.slug])
+        return reverse('store:product_detail', args=[self.slug])
     
     def __str__(self):
         return self.title
