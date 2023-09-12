@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
         crossorigin="anonymous"></script>
-    <title> {% block title %} My shop {% endblock %}</title>
+    <title> {% block title %} BookStore {% endblock %}</title>
 
 </head>
 
@@ -30,7 +30,7 @@
                                 Library
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="/">All</a></li>
+                                <li><a class="dropdown-item" href="{% url 'store:product_all' %}">All</a></li>
                                 {% for c in categories %}
                                 <li>
                                     <a class="dropdown-item" href="{{ c.get_absolute_url}}">
