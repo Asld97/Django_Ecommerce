@@ -20,8 +20,10 @@ from django.contrib import admin
 from django.urls import include, path
 
 urlpatterns = [
+    path('basket/', include('basket.urls', namespace='basket')),
+    path('', include('store.urls', namespace='store')),       
     path('admin/', admin.site.urls),
-    path('', include('store.urls', namespace='store'))
+    
 ]
 
 if settings.DEBUG:
