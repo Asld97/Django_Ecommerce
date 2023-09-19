@@ -6,7 +6,7 @@ app_name = 'store' # quick reference point for url patterns below. Usefull in re
 
 urlpatterns = [
     path('', views.product_all, name='product_all'),
-    path('<slug:slug>/', views.product_detail, name='product_detail'),
+    path('product/<slug:slug>/', views.product_detail, name='product_detail'),
     path('shop/<slug:category_slug>/', views.category_list, name='category_list'),
     
 ]
