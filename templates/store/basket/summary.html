@@ -59,4 +59,25 @@
         </div>
     </div>
 </main>
+
+<script>
+    $(document).on('click', '.delete-button', function (e) {
+        e.preventDefault();
+        var prodid = $(this).data('index');
+        $.ajax({
+            type: 'POST',
+            url: '{% url "basket:basket_delete" %}',
+            data: {
+                productid: prodid,
+                csrfmiddlewaretoken: "{{csrf_token}}",
+                action: 'post'
+            },
+            success: function (json) {
+                $('.product-item[data-index="' + prodid + '"]').remove();
+            },
+            error: function (xhr, errmsg, err) { }
+        });
+    })
+</script>
+
 {% endblock %}
