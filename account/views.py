@@ -33,6 +33,14 @@ def edit_details(request):
     return render(request,
                   'account/user/edit_details.html', {'user_form': user_form})
 
+@login_required
+def delete_user(request):
+    user = UserBase.objects.get(user_name=request.user)
+    user.is_active = False
+    user.save()
+    logout(request)
+    return redirect('account:delete_confirmation')
+
 # Create your views here.
 def account_register(request):
 
@@ -74,7 +82,7 @@ def account_activate(request, uidb64, token):
     if user is not None and account_activation_token.check_token(user, token):
         user.is_active = True
         user.save()
-        # login(request, user)
+        login(request, user)
         return redirect('account:dashboard')
     else:
         return render(request, 'account/registration/activation_invalid.html')
