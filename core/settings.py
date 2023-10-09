@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'basket',
     'store',
     'account',
+    'payment',
     
 ]
 

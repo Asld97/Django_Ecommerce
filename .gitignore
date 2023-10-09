@@ -9,3 +9,5 @@ __pycache__
 media/
 .coverage
 waiting.txt
+stripe_pass.txt
+stripe.exe

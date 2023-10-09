@@ -18,14 +18,11 @@ def dashboard(request):
     return render(request, 'account/user/dashboard.html')
 
 @login_required
-def edit_details(request):
-    print("Hello")
-    if request.method == 'POST':
-        print("It's me")
+def edit_details(request):    
+    if request.method == 'POST':        
         user_form = UserEditForm(instance=request.user, data=request.POST)
         
-        if user_form.is_valid():
-            print("I am here to tell you")
+        if user_form.is_valid():            
             user_form.save()
     else:
         user_form = UserEditForm(instance=request.user)
