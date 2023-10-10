@@ -24,7 +24,7 @@ class Order(models.Model):
 
 
     def __str__(self):
-        return self.user
+        return str(self.created)
 
 class OrderItem(models.Model):
     order = models.ForeignKey(Order,

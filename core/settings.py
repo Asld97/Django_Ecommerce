@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'store',
     'account',
     'payment',
+    'orders',
     
 ]
 
@@ -135,6 +136,9 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')  # Path to the filesystem to the d
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
+# Basket session Id
+BASKET_SESSION_ID = 'basket'
+
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Custom user model
@@ -144,3 +148,6 @@ LOGIN_URL = '/account/login'
 
 # Email Settings
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# Stripe Payment
+STRIPE_ENDPOINT_SECRET = 'whsec_a5105927ae02431b936a4639188ed1142cfb07db1e7b4c477aeac92407e568e9' # webhook secret
