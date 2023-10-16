@@ -150,4 +150,11 @@ LOGIN_URL = '/account/login'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # Stripe Payment
-STRIPE_ENDPOINT_SECRET = 'whsec_a5105927ae02431b936a4639188ed1142cfb07db1e7b4c477aeac92407e568e9' # webhook secret
+# STRIPE_PUBLISHABLE_KEY = 'pk_test_51NzKZwLxGQ0N3mNafZOt2kqCvYGooxLxEWi6I2iyiaoHvL74kvU1PnbpjDhfIaD2lICn7Fd1xn29kQ17swyUPfWv00FfYWqNfj' # webhook secret
+# STRIPE_SECRET_KEY = 'sk_test_51NzKZwLxGQ0N3mNagLW3BGcrBkEJUimfJH2Ufaf9465fBU50WYebW4hNXroCnfr7FGNB4PvplkBaiu3p2QE6H29Z00d50Lg48j'
+
+STRIPE_PUBLISHABLE_KEY = 'pk_test_51NzKZwLxGQ0N3mNafZOt2kqCvYGooxLxEWi6I2iyiaoHvL74kvU1PnbpjDhfIaD2lICn7Fd1xn29kQ17swyUPfWv00FfYWqNfj'
+STRIPE_SECRET_KEY = 'sk_test_51NzKZwLxGQ0N3mNagLW3BGcrBkEJUimfJH2Ufaf9465fBU50WYebW4hNXroCnfr7FGNB4PvplkBaiu3p2QE6H29Z00d50Lg48j'
+# stripe listen --forward-to localhost:8000/payment/webhook/ 
+# Code for getting payments info
+CORS_ALLOW_ALL_ORIGINS=True

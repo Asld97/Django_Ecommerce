@@ -79,7 +79,7 @@ class UserEditForm(forms.ModelForm):
 
     first_name = forms.CharField(
         label='Firstname', min_length=4, max_length=50, widget=forms.TextInput(
-            attrs={'class': 'form-control mb-3', 'placeholder': 'Firstname', 'id': 'form-lastname'}))
+            attrs={'class': 'form-control mb-3', 'placeholder': 'First name', 'id': 'form-lastname'}))
 
     class Meta:
         model = UserBase

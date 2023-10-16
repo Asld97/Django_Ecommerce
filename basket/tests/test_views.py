@@ -1,8 +1,12 @@
-from django.contrib.auth.models import User
+
 from django.test import TestCase
 from django.urls import reverse
 
 from store.models import Category, Product
+
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
 
 class TestBasketView(TestCase):
     def setUp(self):
