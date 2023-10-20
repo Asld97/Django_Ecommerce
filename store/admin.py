@@ -1,22 +1,41 @@
+from django import forms
 from django.contrib import admin
+from mptt.admin import MPTTModelAdmin
 
-from .models import Category, Product
+from .models import (
+    Category,
+    Product,
+    ProductImage,
+    ProductSpecification,
+    ProductSpecificationValue,
+    ProductType,
+)
 
-# Register your models here - short version
-# admin.site.register(Product)
-# admin.site.register(Category)
+admin.site.register(Category, MPTTModelAdmin)
 
 
-# More flexible way
-@admin.register(Category)
-class CategoryAdmin(admin.ModelAdmin):
-    list_display = ['name', 'slug']
-    prepopulated_fields = {'slug': ('name',)}  # Fill in field before its specific data  - never empty field
+class ProductSpecificationInline(admin.TabularInline):
+    model = ProductSpecification
+
+
+@admin.register(ProductType)
+class ProductTypeAdmin(admin.ModelAdmin):
+    inlines = [
+        ProductSpecificationInline,
+    ]
+
+
+class ProductImageInline(admin.TabularInline):
+    model = ProductImage
+
+
+class ProductSpecificationValueInline(admin.TabularInline):
+    model = ProductSpecificationValue
 
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ['title', 'author', 'slug', 'price', 'in_stock', 'created', 'updated']
-    list_filter = ['in_stock', 'is_active']
-    list_editable = ['price', 'in_stock']
-    prepopulated_fields = {'slug': ('title',)}  # Fill in field before its specific data - never empty field
+    inlines = [
+        ProductSpecificationValueInline,
+        ProductImageInline,
+    ]
