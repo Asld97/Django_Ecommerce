@@ -10,27 +10,37 @@ class ProductManager(models.Manager):
 
 
 class Category(models.Model):
-    name = models.CharField(max_length=255, db_index=True, unique=True)  # db_index -> makes a pointer to data, best 
+    name = models.CharField(
+        max_length=255, db_index=True, unique=True
+    )  # db_index -> makes a pointer to data, best
     # use with unique argument
-    slug = models.SlugField(max_length=255, unique=True)  # Slug allows to save data from search bar
+    slug = models.SlugField(
+        max_length=255, unique=True
+    )  # Slug allows to save data from search bar
 
     class Meta:
-        verbose_name_plural = 'categories'
+        verbose_name_plural = "categories"
 
     def get_absolute_url(self):
-        return reverse('store:category_list', args=[self.slug])
-    
+        return reverse("store:category_list", args=[self.slug])
+
     def __str__(self):
         return self.name
 
 
 class Product(models.Model):
-    category = models.ForeignKey(Category, related_name="product", on_delete=models.CASCADE)
-    created_by = models.ForeignKey(settings.AUTH_USER_MODEL, related_name="product_creator", on_delete=models.CASCADE)
+    category = models.ForeignKey(
+        Category, related_name="product", on_delete=models.CASCADE
+    )
+    created_by = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        related_name="product_creator",
+        on_delete=models.CASCADE,
+    )
     title = models.CharField(max_length=255)
-    author = models.CharField(max_length=255, default='admin')
+    author = models.CharField(max_length=255, default="admin")
     description = models.TextField(blank=True)
-    image = models.ImageField(upload_to='images/', default='images/default.jpg')
+    image = models.ImageField(upload_to="images/", default="images/default.jpg")
     slug = models.SlugField(max_length=255)
     price = models.DecimalField(max_digits=4, decimal_places=2)
     in_stock = models.BooleanField(default=True)
@@ -41,11 +51,11 @@ class Product(models.Model):
     products = ProductManager()
 
     class Meta:
-        verbose_name_plural = 'products'
-        ordering = ('-created',)
-    
+        verbose_name_plural = "products"
+        ordering = ("-created",)
+
     def get_absolute_url(self):
         return reverse("store:product_detail", args=[self.slug])
-    
+
     def __str__(self):
         return self.title
