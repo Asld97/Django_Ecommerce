@@ -2,17 +2,30 @@ from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.sites.shortcuts import get_current_site
 from django.http import HttpResponseRedirect
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, redirect, render
 from django.template.loader import render_to_string
 from django.urls import reverse
 from django.utils.encoding import force_bytes, force_str
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 
 from orders.views import user_orders
+from store.models import Product
 
 from .forms import RegistrationForm, UserAddressForm, UserEditForm
 from .models import Address, Customer
 from .tokens import account_activation_token
+
+
+@login_required
+def add_to_wishlist(request, id):
+    product = get_object_or_404(Product, id=id)
+    if product.users_whishlist.filter(id=request.user.id).exists():
+        product.users_whishlist.remove(request.user)
+    else:
+        product.users_whishlist.add(request.user)
+
+    # HTTP_REFERER - remember last site we have been. We redirect to last visited page
+    return HttpResponseRedirect(request.META["HTTP_REFERER"])
 
 
 @login_required

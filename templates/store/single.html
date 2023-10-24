@@ -28,8 +28,8 @@
                 <hr>
                 <button type="button" id="add-button" value="{{product.id}}" class="btn btn-success fw500">Add to
                     basket</button>
-                <button type="button" id="add-button" value="{{product.id}}" class="btn btn-light fw500">Add to
-                    Favorites</button>
+                <a href="{% url "account:user_wishlist" product.id  %}" class="btn btn-light fw500" role="button"
+                    aria-disabled="true">Add to Wish List</a>
             </div>
         </div>
 
@@ -42,11 +42,13 @@
                             <div class="bg-light">
                                 {% for image in product.product_image.all %}
                                 {% if image.is_feature %}
-                                <img class="img-fluid mx-auto d-block" width="200px" alt="{{image.alt_text}}" src="{{ image.image.url }}"> 
+                                <img class="img-fluid mx-auto d-block" width="200px" alt="{{image.alt_text}}"
+                                    src="{{ image.image.url }}">
                                 {% else %}
-                                <img class="img-fluid d-block-inline pt-3" width="100px" alt="{{image.alt_text}}" src="{{ image.image.url }}">
+                                <img class="img-fluid d-block-inline pt-3" width="100px" alt="{{image.alt_text}}"
+                                    src="{{ image.image.url }}">
                                 {% endif %}
-                                
+
                                 {% endfor %}
                             </div>
                         </div>

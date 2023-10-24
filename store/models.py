@@ -3,6 +3,8 @@ from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 from mptt.models import MPTTModel, TreeForeignKey
 
+from core.settings import base
+
 
 class Category(MPTTModel):
     """
@@ -128,11 +130,9 @@ class Product(models.Model):
         _("Created at"), auto_now_add=True, editable=False
     )
     updated_at = models.DateTimeField(_("Updated at"), auto_now=True)
-
-    class Meta:
-        ordering = ("-created_at",)
-        verbose_name = _("Product")
-        verbose_name_plural = _("Products")
+    users_whishlist = models.ManyToManyField(
+        base.AUTH_USER_MODEL, related_name="user_whislist", blank=True
+    )
 
     def get_absolute_url(self):
         return reverse("store:product_detail", args=[self.slug])
