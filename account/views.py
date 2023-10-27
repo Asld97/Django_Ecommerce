@@ -17,12 +17,21 @@ from .tokens import account_activation_token
 
 
 @login_required
+def wishlist(request):
+    products = Product.objects.filter(users_wishlist=request.user)
+
+    return render(
+        request, "account/dashboard/user_wish_list.html", {"wishlist": products}
+    )
+
+
+@login_required
 def add_to_wishlist(request, id):
     product = get_object_or_404(Product, id=id)
-    if product.users_whishlist.filter(id=request.user.id).exists():
-        product.users_whishlist.remove(request.user)
+    if product.users_wishlist.filter(id=request.user.id).exists():
+        product.users_wishlist.remove(request.user)
     else:
-        product.users_whishlist.add(request.user)
+        product.users_wishlist.add(request.user)
 
     # HTTP_REFERER - remember last site we have been. We redirect to last visited page
     return HttpResponseRedirect(request.META["HTTP_REFERER"])

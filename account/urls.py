@@ -73,4 +73,5 @@ urlpatterns = [
         views.add_to_wishlist,
         name="user_wishlist",
     ),
+    path("wishlist/", views.wishlist, name="wishlist"),
 ]
