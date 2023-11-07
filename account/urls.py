@@ -74,4 +74,5 @@ urlpatterns = [
         name="user_wishlist",
     ),
     path("wishlist/", views.wishlist, name="wishlist"),
+    path("user_orders/", views.user_orders, name="user_orders"),
 ]

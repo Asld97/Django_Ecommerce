@@ -12,3 +12,4 @@ waiting.txt
 stripe_pass.txt
 stripe.exe
 _documentation
+checkout/paypal.py
