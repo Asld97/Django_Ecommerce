@@ -13,3 +13,6 @@ stripe_pass.txt
 stripe.exe
 _documentation
 checkout/paypal.py
+Django_Ecommerce.code-workspace
+credentials.txt
+.env
