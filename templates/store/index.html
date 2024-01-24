@@ -33,8 +33,9 @@
                             {% endfor %}
                             <div class="card-body px-0">
                                 <p class="card-text">
-                                    <a class="text-dark text-decoration-none"
-                                        href="{{ product.get_absolute_url }}">{{ product.title|slice:":50" }}...</a>
+                                    <a class="text-dark text-decoration-none" href="{{ product.get_absolute_url }}">
+                                        {{ product.title|slice:":50" }}...
+                                    </a>
                                 </p>
                                 <div class="fw-bold">£{{product.regular_price}}</div>
                             </div>

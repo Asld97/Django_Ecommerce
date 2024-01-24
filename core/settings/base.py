@@ -13,6 +13,9 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 import os
 from pathlib import Path
 
+from decouple import config
+from django.core.management.utils import get_random_secret_key
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
@@ -21,7 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-0cao=$2bph#yr0i68nwjwzf&g!0f8g-ar%zim0i&)br8t_k^cy"
+
+# SECRET_KEY = config("SECRET_KEY")
+SECRET_KEY = get_random_secret_key()
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -45,9 +50,9 @@ INSTALLED_APPS = [
     "basket",
     "store",
     "account",
-    "payment",
     "orders",
     "mptt",
+    "checkout",
 ]
 
 MIDDLEWARE = [
@@ -145,19 +150,15 @@ BASKET_SESSION_ID = "basket"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Custom user model
-AUTH_USER_MODEL = "account.UserBase"
+AUTH_USER_MODEL = "account.Customer"
 LOGIN_REDIRECT_URL = "/account/dashboard"
 LOGIN_URL = "/account/login"
 
 # Email Settings
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
-# Stripe Payment
-# STRIPE_PUBLISHABLE_KEY = 'pk_test_51NzKZwLxGQ0N3mNafZOt2kqCvYGooxLxEWi6I2iyiaoHvL74kvU1PnbpjDhfIaD2lICn7Fd1xn29kQ17swyUPfWv00FfYWqNfj' # webhook secret
-# STRIPE_SECRET_KEY = 'sk_test_51NzKZwLxGQ0N3mNagLW3BGcrBkEJUimfJH2Ufaf9465fBU50WYebW4hNXroCnfr7FGNB4PvplkBaiu3p2QE6H29Z00d50Lg48j'
+STRIPE_PUBLISHABLE_KEY = config("STRIPE_PUBLISHABLE_KEY")
+STRIPE_SECRET_KEY = config("STRIPE_SECRET_KEY")
 
-STRIPE_PUBLISHABLE_KEY = "pk_test_51NzKZwLxGQ0N3mNafZOt2kqCvYGooxLxEWi6I2iyiaoHvL74kvU1PnbpjDhfIaD2lICn7Fd1xn29kQ17swyUPfWv00FfYWqNfj"
-STRIPE_SECRET_KEY = "sk_test_51NzKZwLxGQ0N3mNagLW3BGcrBkEJUimfJH2Ufaf9465fBU50WYebW4hNXroCnfr7FGNB4PvplkBaiu3p2QE6H29Z00d50Lg48j"
-# stripe listen --forward-to localhost:8000/payment/webhook/
 # Code for getting payments info
 CORS_ALLOW_ALL_ORIGINS = True

@@ -61,4 +61,18 @@ urlpatterns = [
         TemplateView.as_view(template_name="account/password_reset/reset_status.html"),
         name="password_reset_complete",
     ),
+    # CRUD URLs
+    path("addresses/", views.view_address, name="addresses"),
+    path("add_addresses/", views.add_address, name="add_address"),
+    path("addresses/edit/<slug:id>", views.edit_address, name="edit_address"),
+    path("addresses/delete/<slug:id>", views.delete_address, name="delete_address"),
+    path("addresses/set_default/<slug:id>", views.set_default, name="set_default"),
+    # Whislist
+    path(
+        "wishlist/add_to_wishlist/<int:id>",
+        views.add_to_wishlist,
+        name="user_wishlist",
+    ),
+    path("wishlist/", views.wishlist, name="wishlist"),
+    path("user_orders/", views.user_orders, name="user_orders"),
 ]
